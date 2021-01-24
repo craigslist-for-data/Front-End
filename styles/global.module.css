@@ -1,0 +1,210 @@
+.body {
+  margin: 1;
+  overflow: scroll;
+  z-index: -1;
+  text-decoration: none;
+}
+
+.navbar {
+  background-color: #5B26F1;
+  color: #5B26F1;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: "futura";
+}
+
+.button {
+  background-color: white;
+  border: none;
+  color: #5B26F1;
+  padding: 9px;
+  text-align: center;
+  display: inline-block;
+  font-size: 17px;
+}
+
+.button1 {
+  border-radius: 45px;
+}
+
+.button2 {
+  border-radius: 45px;
+  background-color: #5B26F1;
+  border: 2px solid #FFFFFF;
+  color: #FFFFFF;
+}
+
+.button3 {
+  border-radius: 45px;
+  background-color: #F1D926;
+}
+
+.button4 {
+  border-radius: 45px;
+  background-color: #5B26F1;
+  color: #FFFFFF;
+  padding: 15px 30px;
+  font-size: 17px;
+}
+
+.button:focus {outline:0;}
+
+.PageTitle{
+  position: absolute;
+  margin: auto;
+  top: 100;
+  left: 75;
+  font-size: 28px;
+  font-family: "helvetica";
+  color: #5B26F1;
+  font-weight: bold;
+}
+
+.PostTitle{
+  position: relative;
+  display: inline-block;
+  margin: 20;
+  font-size: 28px;
+  font-family: "helvetica";
+  color: #5B26F1;
+  font-weight: bold;
+}
+
+.PostTitle2{
+  position: absolute;
+  display: inline-block;
+  top: 100;
+  left: 75;
+  margin: 20;
+  font-size: 28px;
+  font-family: "helvetica";
+  color: #5B26F1;
+  font-weight: bold;
+}
+
+.PostSubTitle{
+  position: relative;
+  display: inline-block;
+  margin-top: 20;
+  margin-right: 20;
+  font-size: 20px;
+  font-family: "helvetica";
+  color: #000000;
+  font-weight: bold;
+}
+
+.PostSubTitle2{
+  position: relative;
+  margin-left: 20;
+  margin-right: 20;
+  font-size: 20px;
+  font-family: "helvetica";
+  color: #000000;
+  font-weight: bold;
+}
+
+.PostSubTitle3{
+  position: relative;
+  display: inline-block;
+  top: 125;
+  left: 235;
+  font-size: 20px;
+  font-family: "helvetica";
+  color: #000000;
+  font-weight: bold;
+}
+
+.container{
+  top: 120;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15;
+}
+
+.mainbutton {
+  position: relative;
+  margin-top: 20;
+  margin-bottom: 5;
+}
+
+.RequestListing{
+  position: relative;
+  margin-top: 20;
+  height: 185;
+  width: 885;
+  font-family: "helvetica";
+  border: 2px solid #5B26F1;
+  border-radius: 45px;
+  padding: 10;
+}
+
+.LargeTextBox{
+  position: relative;
+  margin-top: 10;
+  margin-bottom: 10;
+  height: 185;
+  width: 700;
+  font-family: "helvetica";
+  font-size: 18px;
+  border: 2px solid #5B26F1;
+  border-radius: 18px;
+  padding: 15;
+}
+
+.MessageBox{
+  position: relative;
+  margin-top: 10;
+  margin-bottom: 10;
+  height: 150;
+  width: 650;
+  font-family: "helvetica";
+  font-size: 18px;
+  border: 2px solid #000000;
+  border-radius: 18px;
+  padding: 15;
+}
+
+.SmallTextBox{
+  position: relative;
+  margin-top: 10;
+  margin-bottom: 10;
+  height: 45;
+  width: 700;
+  font-family: "helvetica";
+  font-size: 18px;
+  border: 2px solid #5B26F1;
+  border-radius: 18px;
+  padding: 15;
+}
+
+.InputFieldName{
+  font-family: "helvetica";
+  color:#5B26F1;
+  margin-top: 10;
+  font-size: 22px;
+  margin-right: 10;
+}
+
+#checkboxtext{
+  font-family: "helvetica";
+  color:#5B26F1;
+  font-size: 22px;
+}
+
+.input:focus, .textarea:focus, .select:focus{
+  outline: none;
+}
