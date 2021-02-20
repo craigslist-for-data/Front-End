@@ -1,12 +1,9 @@
 import globalStyles from '../styles/global.module.css' 
-
 import React, { useEffect, useState } from 'react' 
-
 import Cookies from 'universal-cookie' 
-
 import Router from 'next/Router'
-
 const axios = require('axios')
+const { hostname } = require('../config')
 
 export default function Registration(){
   console.log(globalStyles.PageTitle)
@@ -25,7 +22,7 @@ export default function Registration(){
 
   function register(){
     console.log(username, email, name, password, reenterPassword, phone, linkedIn, gitHub, sSRN, organizationCompany, title)
-    const url="http://0.0.0.0:8080/account/register"
+    const url=`${hostname}/account/register`
     const body={
       username: username,
       email: email,
@@ -45,7 +42,7 @@ export default function Registration(){
             cookie.set('accountId', res.data.accountId) 
             cookie.set('token', res.data.token)
             cookie.set('hasToken', res.data.hasToken)
-            Router.push("/")
+            Router.push("/home")
           })
           .catch(err => {
             console.error(err)

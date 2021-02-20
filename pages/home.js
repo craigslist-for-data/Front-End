@@ -1,12 +1,9 @@
 import globalStyles from '../styles/global.module.css' 
-
 import React, { useEffect, useState } from 'react' 
-
 import Cookies from 'universal-cookie' 
-
 import Router from 'next/Router'
-
 const axios = require('axios')
+const { hostname } = require('../config')
 
 export default function Home(){
   console.log(globalStyles.PageTitle)
@@ -14,9 +11,17 @@ export default function Home(){
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-  axios.get('http://0.0.0.0:8080/posts?index=1&batchSize=35').then(res => {
+  axios.get(`${hostname}/posts?index=1&batchSize=35`).then(res => {
     setPosts(res.data)})
-  })
+  }, [])
+
+  function requestData(){
+    try {
+      Router.push("/request")
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
 return (
 
@@ -37,21 +42,21 @@ return (
     <div className={globalStyles.container}>
 
       <div className={globalStyles.mainbutton}>
-        <a href="#requestdata"><button onclick="document.location='REQUESTASET.html'" className={globalStyles.button4}>request data</button></a>
+        <a href="#requestdata"><button onClick={function(){requestData()}} className={globalStyles.button4}>request data</button></a>
       </div>
 
       {posts.map((post, index) => (
         <div key={index.toString()} className={globalStyles.RequestListing}>
-          <div onclick="document.location='VIEWAREQUEST.html'" className={globalStyles.PostTitle}>
+          <div onClick="document.location='VIEWAREQUEST.html'" className={globalStyles.PostTitle}>
             {post.topic}
           </div>
-          <div onclick="document.location='VIEWAUTHOR.html'" className={globalStyles.PostSubTitle}>
+          <div onClick="document.location='VIEWAUTHOR.html'" className={globalStyles.PostSubTitle}>
             | {post.account_id}
           </div>
           <div style={{float: "right"}} className={globalStyles.PostSubTitle}>
             {post.created_at}
           </div>
-          <div onclick="document.location='VIEWAREQUEST.html'" className={globalStyles.PostSubTitle2}>
+          <div onClick="document.location='VIEWAREQUEST.html'" className={globalStyles.PostSubTitle2}>
             {post.brief_description}
           </div>
         </div>))}

@@ -1,12 +1,9 @@
 import globalStyles from '../styles/global.module.css' 
-
 import React, { useEffect, useState } from 'react' 
-
 import Cookies from 'universal-cookie' 
-
 import Router from 'next/Router'
-
 const axios = require('axios')
+const { hostname } = require('../config')
 
 export default function Request(){
   console.log(globalStyles.PageTitle)
@@ -29,7 +26,7 @@ export default function Request(){
 
   function request(){
     console.log(topic, purpose, brief_description, detailed_description, links)
-    const url="http://0.0.0.0:8080/posts"
+    const url=`${hostname}/posts`
     const body={
       accountId: accountId,
       topic: topic,
@@ -78,7 +75,7 @@ return(
         <div className= {globalStyles.InputFieldName}>
           Use for Requested Set:*
         </div>
-          <input type="radio" id="checkboxtext" name="vehicle1" value="Individual" checked={usage=='Individual'}  onChange={(e) => setUsage('Individual')} />Individual
+          <input type="radio" id="checkboxtext" name="vehicle1" value="Individual" checked={usage=='Personal'}  onChange={(e) => setUsage('Personal')} />Personal
           <input type="radio" id="checkboxtext" name="vehicle2" value="Academic" checked={usage=='Academic'}  onChange={(e) => setUsage('Academic')}/>Academic
           <input type="radio" id="checkboxtext" name="vehicle3" value="Business" checked={usage=='Business'}  onChange={(e) => setUsage('Business')}/>Business
       </div>
