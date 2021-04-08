@@ -1,5 +1,6 @@
 import globalStyles from '../styles/global.module.css' 
 import React, { useEffect, useState } from 'react' 
+import NavBar from '../navbar'
 import Cookies from 'universal-cookie' 
 import Router from 'next/Router'
 const axios = require('axios')
@@ -39,9 +40,9 @@ export default function Registration(){
           //set a cookie (and auth token), advance to the next page
           .then(res => {                                //what get back from server
             const cookie = new Cookies() 
-            cookie.set('accountId', res.data.accountId) 
-            cookie.set('token', res.data.token)
-            cookie.set('hasToken', res.data.hasToken)
+            cookie.set('accountId', res.data.accountId, { path: '/',  maxAge: 60 * 60 * 24 * 365}) 
+            cookie.set('token', res.data.token, { path: '/',  maxAge: 60 * 60 * 24 * 365})
+            cookie.set('hasToken', res.data.hasToken, { path: '/',  maxAge: 60 * 60 * 24 * 365})
             Router.push("/home")
           })
           .catch(err => {
@@ -52,13 +53,7 @@ export default function Registration(){
   return (
   <div className={globalStyles.body}>
 
-    <div className={globalStyles.navbar}>
-      <a style={{fontWeight: "bold", fontSize: 32}} href="HOMEPAGE.html">Lamp</a>
-      <a><button onClick="document.location='GIVEUSFEEDBACK.html'" className={`${globalStyles.button3} button3`}>give us feedback</button></a>
-      <a><button onClick="document.location='SENDANINVITE.html'" className={`${globalStyles.button1} button1`}>invite</button></a>
-      <a style={{float:"right"}}><button onClick="document.location='LOGIN.html'" className={`${globalStyles.button2} button2`}>log in</button></a>
-      <a style={{float:"right"}}><button onClick="document.location='SIGNUP.html'" className={`${globalStyles.button1} button1`}>sign up</button></a>
-    </div>
+    {NavBar()}
 
     <div className={globalStyles.PageTitle}>
       Sign Up

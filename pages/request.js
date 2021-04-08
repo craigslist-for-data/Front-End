@@ -1,5 +1,6 @@
 import globalStyles from '../styles/global.module.css' 
 import React, { useEffect, useState } from 'react' 
+import NavBar from '../navbar'
 import Cookies from 'universal-cookie' 
 import Router from 'next/Router'
 const axios = require('axios')
@@ -49,27 +50,13 @@ export default function Request(){
 return(
   <div className={globalStyles.body}>
 
-    <div className={globalStyles.navbar}>
-      <a style={{fontWeight: "bold", fontSize: 32}} href="HOMEPAGE.html">Lamp</a>
-      <a><button onClick="document.location='GIVEUSFEEDBACK.html'" className={globalStyles.button3}>give us feedback</button></a>
-      <a><button onClick="document.location='SENDANINVITE.html'" className={globalStyles.button1}>invite</button></a>
-      <a style={{float:"right"}}><button onClick="document.location='LOGIN.html'" className={globalStyles.button2}>log in</button></a>
-      <a style={{float:"right"}}><button onClick="document.location='SIGNUP.html'" className={globalStyles.button1}>sign up</button></a>
-    </div>
+    {NavBar()}
 
     <div className={globalStyles.PageTitle}>
       Request a Set
     </div>
 
     <div className={globalStyles.container}>
-
-      <div>
-        <div className={globalStyles.InputFieldName}>
-           Topic of Requested Set:*
-        </div>
-        <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setTopic(e.target.value)} >
-        </input>
-      </div>
 
       <div style={{height:"100", width:"700"}}>
         <div className= {globalStyles.InputFieldName}>
@@ -81,8 +68,16 @@ return(
       </div>
 
       <div>
+        <div className={globalStyles.InputFieldName}>
+           Request Title:*
+        </div>
+        <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setTopic(e.target.value)} >
+        </input>
+      </div>
+
+      <div>
         <div className= {globalStyles.InputFieldName}>
-          Purpose of Requested Set:*
+          Research Question:*
         </div>
         <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setPurpose(e.target.value)} >
         </input>
@@ -90,7 +85,7 @@ return(
 
       <div>
         <div className= {globalStyles.InputFieldName}>
-          Brief Description of Requested Set:*
+          Briefly Describe the Data Set you're Looking for:*
         </div>
         <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setBrief_description(e.target.value)} >
         </input>
@@ -98,7 +93,7 @@ return(
 
       <div>
         <div className= {globalStyles.InputFieldName}>
-          Detailed Description of Requested Set:*
+          Describe in Detail the Data Set you're Looking for:*
         </div>
         <textarea className={globalStyles.LargeTextBox} onChange={(e) => setDetailed_description(e.target.value)} >
         </textarea>

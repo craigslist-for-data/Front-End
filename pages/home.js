@@ -1,5 +1,6 @@
 import globalStyles from '../styles/global.module.css' 
 import React, { useEffect, useState } from 'react' 
+import NavBar from '../navbar'
 import Cookies from 'universal-cookie' 
 import Router from 'next/Router'
 const axios = require('axios')
@@ -9,6 +10,7 @@ export default function Home(){
   console.log(globalStyles.PageTitle)
 
   const [posts, setPosts] = useState([])
+  const [accounts, setAccounts] = useState([])
 
   useEffect(() => {
   axios.get(`${hostname}/posts?index=1&batchSize=35`).then(res => {
@@ -23,17 +25,28 @@ export default function Home(){
     }
   }
 
+  function displayData(id){
+    try {
+      Router.push(`/postdetail/${id}`)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+//remove if problem
+  function displayProfile(id){
+    try {
+      Router.push(`/profile/${id}`)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
 return (
 
   <div className={globalStyles.body}>
 
-  <div className={globalStyles.navbar}>
-    <a style={{fontWeight: "bold", fontSize: 32}} href="HOMEPAGE.html">Lamp</a>
-    <a><button onClick="document.location='GIVEUSFEEDBACK.html'" className={globalStyles.button3}>give us feedback</button></a>
-    <a><button onClick="document.location='SENDANINVITE.html'" className={globalStyles.button1}>invite</button></a>
-    <a style={{float:"right"}}><button onClick="document.location='LOGIN.html'" className={globalStyles.button2}>log in</button></a>
-    <a style={{float:"right"}}><button onClick="document.location='SIGNUP.html'" className={globalStyles.button1}>sign up</button></a>
-  </div>
+    {NavBar()}
 
     <div className={globalStyles.PageTitle}>
       Requested Sets
@@ -47,16 +60,16 @@ return (
 
       {posts.map((post, index) => (
         <div key={index.toString()} className={globalStyles.RequestListing}>
-          <div onClick="document.location='VIEWAREQUEST.html'" className={globalStyles.PostTitle}>
-            {post.topic}
-          </div>
-          <div onClick="document.location='VIEWAUTHOR.html'" className={globalStyles.PostSubTitle}>
-            | {post.account_id}
-          </div>
-          <div style={{float: "right"}} className={globalStyles.PostSubTitle}>
+          <div style={{float: "right"}} className={globalStyles.PostSubTitle5}>
             {post.created_at}
           </div>
-          <div onClick="document.location='VIEWAREQUEST.html'" className={globalStyles.PostSubTitle2}>
+          <div onClick={function(){displayData(post.id)}} className={globalStyles.PostTitle}>
+            {post.topic}
+          </div>
+          <div onClick={function(){displayProfile(post.account_id)}} className={globalStyles.PostSubTitle}>
+            | {post.account_id}
+          </div>
+          <div onClick={function(){displayData(post.id)}} className={globalStyles.PostSubTitle2}>
             {post.brief_description}
           </div>
         </div>))}

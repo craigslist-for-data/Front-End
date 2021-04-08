@@ -17,7 +17,7 @@
 
 .navbar a {
   float: left;
-  color: #f2f2f2;
+  color: #ffffff;
   text-align: center;
   padding: 10px 10px;
   text-decoration: none;
@@ -105,6 +105,8 @@
   position: relative;
   display: inline-block;
   margin: 5px;
+  margin-top: 12px;
+  margin-left: 10px;
   font-size: 28px;
   font-family: "helvetica";
   color: #5B26F1;
@@ -125,6 +127,54 @@
 
 .PostSubTitle{
   position: relative;
+  /*display: inline-block;*/
+  margin-top: 1px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-family: "helvetica";
+  color: #000000;
+  font-weight: bold;
+}
+
+.PostSubTitle2{
+  position: relative;
+  margin-left: 20px;
+  margin-right: 30px;
+  font-size: 20px;
+  font-family: "helvetica";
+  color: #000000;
+  /*font-weight: bold;*/
+}
+
+.PostSubTitle3{
+  position: relative;
+  display: inline-block;
+  top: 100px;
+  left: 235px;
+  font-size: 20px;
+  font-family: "helvetica";
+  color: #000000;
+  font-weight: bold;
+}
+
+.PostSubTitle5{
+  position: relative;
+  /*display: inline-block;*/
+  float: right;
+  margin-top: 1px;
+  margin-right: 20px;
+  margin-left: 20px;
+  /* margin-bottom: 6px;*/
+  font-size: 16px;
+  font-family: "helvetica";
+  color: #000000;
+  /*font-weight: bold;*/
+}
+
+.PostSubTitle0{
+  position: relative;
   display: inline-block;
   margin-top: 20px;
   margin-right: 20px;
@@ -134,22 +184,12 @@
   font-weight: bold;
 }
 
-.PostSubTitle2{
-  position: relative;
-  margin-left: 30px;
-  margin-right: 30px;
-  font-size: 20px;
-  font-family: "helvetica";
-  color: #000000;
-  font-weight: bold;
-}
-
-.PostSubTitle3{
+.PostSubTitle03{
   position: relative;
   display: inline-block;
   top: 125px;
-  left: 235px;
-  font-size: 20px;
+  left: 75px;
+  font-size: 25px;
   font-family: "helvetica";
   color: #000000;
   font-weight: bold;
@@ -172,23 +212,34 @@
   padding: 10px;
 }
 
+.InboxMsgListing{
+  position: relative;
+  margin-top: 20px;
+  height: 120px;
+  width: 650px;
+  font-family: "helvetica";
+  border: 2px solid #5B26F1;
+  border-radius: 45px;
+  padding: 10px;
+}
+
 .MessageBox{
   position: relative;
-  margin-top: 10;
-  margin-bottom: 10;
-  height: 150;
-  width: 650;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 150px;
+  width: 650px;
   font-family: "helvetica";
   font-size: 18px;
   border: 2px solid #000000;
   border-radius: 18px;
-  padding: 15;
+  padding: 10px;
 }
 
 .SmallTextBox{
   position: relative;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   height: 30px;
   width: 700px;
   font-family: "helvetica";
@@ -201,7 +252,7 @@
 .LargeTextBox{
   position: relative;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   height: 180px;
   width: 695px;
   font-family: "helvetica";
