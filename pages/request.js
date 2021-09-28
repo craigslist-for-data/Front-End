@@ -2,6 +2,7 @@ import globalStyles from '../styles/global.module.css' 
 import React, { useEffect, useState } from 'react' 
 import Cookies from 'universal-cookie' 
 import Router from 'next/Router'
+import NavBar from '../components/navbar'
 const axios = require('axios')
 const { hostname } = require('../config')
 
@@ -49,13 +50,7 @@ export default function Request(){
 return(
   <div className={globalStyles.body}>
 
-    <div className={globalStyles.navbar}>
-      <a style={{fontWeight: "bold", fontSize: 32}} href="HOMEPAGE.html">Lamp</a>
-      <a><button onClick="document.location='GIVEUSFEEDBACK.html'" className={globalStyles.button3}>give us feedback</button></a>
-      <a><button onClick="document.location='SENDANINVITE.html'" className={globalStyles.button1}>invite</button></a>
-      <a style={{float:"right"}}><button onClick="document.location='LOGIN.html'" className={globalStyles.button2}>log in</button></a>
-      <a style={{float:"right"}}><button onClick="document.location='SIGNUP.html'" className={globalStyles.button1}>sign up</button></a>
-    </div>
+    {NavBar()}
 
     <div className={globalStyles.PageTitle}>
       Request a Set
@@ -113,7 +108,7 @@ return(
       </div>
 
       <div className={globalStyles.mainbutton}>
-        <a href="#requestdata"><button className={globalStyles.button4} onClick={function(){request()}}>request set</button></a>
+        <a><button className={globalStyles.button4} onClick={function(){request()}}>post</button></a>
       </div>
     </div>
   </div>
