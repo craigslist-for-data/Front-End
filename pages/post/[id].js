@@ -8,16 +8,11 @@ const axios = require('axios')
 const { hostname } = require('../../config')
 
 export default function PostDetail(){
-  console.log(globalStyles.PageTitle)
-
   const [post, setPost] = useState([])
   const router = useRouter()
   const { id } = router.query
-    console.log(id)
-  //const id = 32
 
   useEffect(() => {
-  console.log(id)
   if (Boolean(id)){
     axios.get(`${hostname}/posts/${id}`).then(res => {
       setPost(res.data)
@@ -27,7 +22,6 @@ export default function PostDetail(){
 
   function messageData(id){
     try {
-      console.log("lookatme")
       const url = `${hostname}/messages/threads`
       const cookie = new Cookies()
       const accountId = cookie.get('accountId')
