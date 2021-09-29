@@ -12,12 +12,25 @@ export default function Request(){
   const cookie = new Cookies()
   const accountId = cookie.get('accountId')
   const token = cookie.get('token')
-  const [topic, setTopic] = useState('') 
+  const [briefDescription, setBriefDescription] = useState('') 
+  const [briefDescriptionCounter, setBriefDescriptionCounter] = useState(0)
   const [usage, setUsage] = useState('') 
-  const [purpose, setPurpose] = useState('') 
-  const [brief_description, setBrief_description] = useState('') 
-  const [detailed_description, setDetailed_description] = useState('') 
-  const [links, setLinks] = useState('') 
+  const [detailedDescription, setDetailedDescription] = useState('') 
+  const [detailedDescriptionCounter, setDetailedDescriptionCounter] = useState(0)
+  const [websiteLink, setWebsiteLink] = useState('') 
+  const [githubLink, setGithubLink] = useState('') 
+
+  function changeBriefDescription(str){
+    setBriefDescriptionCounter(str.length)
+    setBriefDescription(str)
+    return
+  }
+
+  function changeDetailedDescription(str){
+    setDetailedDescriptionCounter(str.length)
+    setDetailedDescription(str)
+    return
+  }
 
   const headers = { 
     headers: { 
@@ -26,16 +39,15 @@ export default function Request(){
   } 
 
   function request(){
-    console.log(topic, purpose, brief_description, detailed_description, links)
+    console.log(briefDescription, usage, detailedDescription, links)
     const url=`${hostname}/posts`
     const body={
       accountId: accountId,
-      topic: topic,
+      briefDesc: briefDescription,
       usage: usage,
-      purpose: purpose,
-      briefDesc: brief_description,
-      detailedDesc: detailed_description,
-      links: links
+      detailedDesc: detailedDescription,
+      website: websiteLink,
+      github: githubLink,
     }
 
     axios.post(url, body, headers)
@@ -45,7 +57,7 @@ export default function Request(){
           .catch(err => {
             console.error(err)
           })
-} 
+    } 
 
 return(
   <div className={globalStyles.body}>
@@ -53,58 +65,53 @@ return(
     {NavBar()}
 
     <div className={globalStyles.PageTitle}>
-      Request a Set
+      Request Data
     </div>
 
     <div className={globalStyles.container}>
 
-      <div>
+      <div className={globalStyles.InputFieldContainer}>
         <div className={globalStyles.InputFieldName}>
-           Topic of Requested Set:*
+          Brief Description of Requested Set:*
         </div>
-        <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setTopic(e.target.value)} >
-        </input>
+        <input type="text" placeholder="e.g. Geospatial orbit data from 2019-2020" maxLength={64} className={globalStyles.SmallTextBox} onChange={(e) => changeBriefDescription(e.target.value)} ></input>
+        <div className={globalStyles.TextCounter}>{briefDescriptionCounter}/64 Characters Used</div>
       </div>
 
-      <div style={{height:"100", width:"700"}}>
-        <div className= {globalStyles.InputFieldName}>
+      <div style={{height:"100", width:"700"}} className={globalStyles.InputFieldContainer}>
+        <div className={globalStyles.InputFieldNameCentered}>
           Use for Requested Set:*
         </div>
+        <div className={globalStyles.InputRadioContainerCentered}>
           <input type="radio" id="checkboxtext" name="vehicle1" value="Individual" checked={usage=='Personal'}  onChange={(e) => setUsage('Personal')} />Personal
           <input type="radio" id="checkboxtext" name="vehicle2" value="Academic" checked={usage=='Academic'}  onChange={(e) => setUsage('Academic')}/>Academic
           <input type="radio" id="checkboxtext" name="vehicle3" value="Business" checked={usage=='Business'}  onChange={(e) => setUsage('Business')}/>Business
-      </div>
-
-      <div>
-        <div className= {globalStyles.InputFieldName}>
-          Purpose of Requested Set:*
         </div>
-        <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setPurpose(e.target.value)} >
-        </input>
       </div>
 
-      <div>
-        <div className= {globalStyles.InputFieldName}>
-          Brief Description of Requested Set:*
-        </div>
-        <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setBrief_description(e.target.value)} >
-        </input>
-      </div>
-
-      <div>
+      <div className={globalStyles.InputFieldContainer}>
         <div className= {globalStyles.InputFieldName}>
           Detailed Description of Requested Set:*
         </div>
-        <textarea className={globalStyles.LargeTextBox} onChange={(e) => setDetailed_description(e.target.value)} >
-        </textarea>
+        <textarea placeholder="Please provide further details on the data you are looking for (e.g. fields, time period, etc) and the intended use of that data" maxLength={500} className={globalStyles.LargeTextBox} onChange={(e) => changeDetailedDescription(e.target.value)} ></textarea>
+        <div className={globalStyles.TextCounter}>{detailedDescriptionCounter}/500 Characters Used</div>
       </div>
 
-      <div>
-        <div className= {globalStyles.InputFieldName}>
-          Link(s) to current project:
+      <div className={globalStyles.InputFieldContainer}>
+        <div className={globalStyles.InputFieldName}>
+          Link to Project Website:
         </div>
-        <textarea className={globalStyles.LargeTextBox} onChange={(e) => setLinks(e.target.value)} >
-        </textarea>
+        <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setWebsiteLink(e.target.value)} ></input>
+      </div>
+
+      <div className={globalStyles.InputFieldContainer}>
+        <div className={globalStyles.InputFieldName}>
+          Path to Github Repo:
+        </div>
+        <div className={globalStyles.UrlPathContainer}>
+          <div className={globalStyles.UrlPathHostContainer}>https://github.com</div>
+          <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setGithubLink(e.target.value)} ></input>
+        </div>
       </div>
 
       <div className={globalStyles.mainbutton}>

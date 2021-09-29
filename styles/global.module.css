@@ -183,7 +183,7 @@
 
 .PostDetailedDescriptionFull{
   position: relative;
-  margin-top: 15px;
+  margin-top: 25px;
   font-size: 16px;
   font-family: "helvetica";
   color: #000000;
@@ -262,38 +262,82 @@
   padding: 15;
 }
 
+.TextCounter{
+  font-size: 12px;
+  color: grey;
+  float: right;
+  margin-right: 5px;
+}
+
 .SmallTextBox{
+  display: inline-block;
   position: relative;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   height: 30px;
-  width: 700px;
+  width: 97%;
   font-family: "helvetica";
-  font-size: 18px;
+  font-size: 16px;
   border: 2px solid #5B26F1;
   border-radius: 18px;
   padding: 5px;
+  padding-left: 10px;
 }
 
 .LargeTextBox{
   position: relative;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   height: 180px;
-  width: 695px;
+  width: 97%;
   font-family: "helvetica";
-  font-size: 18px;
+  font-size: 16px;
   border: 2px solid #5B26F1;
   border-radius: 18px;
-  padding: 5px;
+  padding: 10px;
+}
+
+.InputFieldContainer{
+  display:inline-block;
+  margin-top: 20px;
+  width: 700px;
 }
 
 .InputFieldName{
+  position: relative;
   font-family: "helvetica";
   color:#5B26F1;
   margin-top: 10;
   font-size: 22px;
   margin-right: 10;
+  width: 100%;
+}
+
+.InputFieldNameCentered{
+  position: relative;
+  text-align: center;
+  font-family: "helvetica";
+  color:#5B26F1;
+  margin-top: 10;
+  font-size: 22px;
+}
+
+.InputRadioContainerCentered{
+  position: relative;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.UrlPathContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.UrlPathHostContainer{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 5px;
 }
 
 #checkboxtext{
@@ -311,7 +355,7 @@
 }
 
 .usageContainer {
-  margin-top: 15px;
+  margin-top: 25px;
   position: relative;
   display: flex;
 }
