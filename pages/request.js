@@ -101,7 +101,7 @@ return(
         <div className={globalStyles.InputFieldName}>
           Link to Project Website:
         </div>
-        <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setWebsiteLink(e.target.value)} ></input>
+        <input placeholder={"https://www.datagenie.org"} className={globalStyles.SmallTextBox} onChange={(e) => setWebsiteLink(e.target.value)} ></input>
       </div>
 
       <div className={globalStyles.InputFieldContainer}>
@@ -110,7 +110,7 @@ return(
         </div>
         <div className={globalStyles.UrlPathContainer}>
           <div className={globalStyles.UrlPathHostContainer}>https://github.com</div>
-          <input style={{display:"inline-block"}} className={globalStyles.SmallTextBox} onChange={(e) => setGithubLink(e.target.value)} ></input>
+          <input placeholder={"/craigslist-for-data"} className={globalStyles.SmallTextBox} onChange={(e) => setGithubLink(e.target.value)} ></input>
         </div>
       </div>
 
