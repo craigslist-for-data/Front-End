@@ -113,6 +113,11 @@
   cursor: pointer;
 }
 
+.button4:disabled {
+  opacity: 0.5;
+  cursor: auto;
+}
+
 .PageTitle{
   position: absolute;
   margin: auto;
@@ -159,18 +164,21 @@
   font-weight: bold;
 }
 
-.PostDetailedDescription{
-  position: relative;
-  margin-top: 15px;
+.DescriptionText{
   font-size: 16px;
   height: 74px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-family: "helvetica";
   color: #000000;
 }
 
-.PostDetailedDescription::after {
+.PostDetailedDescriptionContainer{
+  position: relative;
+  margin-top: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.PostDetailedDescriptionContainer::after {
   content: "";
   text-align: right;
   position: absolute;
@@ -380,4 +388,89 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: #636363;
+  z-index: 3;
+  opacity: 80%;
+  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.modal {
+  width: 750px;
+  height: 600px;
+  position: fixed;
+  margin-top: 25px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: white;
+  opacity: 100%;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  z-index: 4;
+  overflow: scroll;
+}
+
+.modalContainer {
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+}
+
+.exitButton {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #696969;
+  float: right;
+  background-color: inherit;
+  border: none;
+}
+
+.exitButton:hover {
+  cursor: pointer;
+}
+
+.exitButtonContainer {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.ModalTextContentContainer{
+  padding: 10px;
+  margin-top: 10px;
+  padding-left: 75px;
+  padding-right: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ModalGeneralContentContainer{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+  position:relative;
+}
+
+.closeButton{
+  display: block;
+  background-color: white;
+  color: #0070f3;
+  border: none;
+  font-size: 16px;
+}
+
+.closeButton:hover{
+  cursor: pointer;
 }

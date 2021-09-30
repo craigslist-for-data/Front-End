@@ -64,8 +64,10 @@ export default function Home(){
               {post.brief_description}
             </div>
 
-            <div className={globalStyles.PostDetailedDescription}>
-              {post.detailed_description}
+            <div className={globalStyles.PostDetailedDescriptionContainer}>
+              <div className={globalStyles.DescriptionText}>
+                {post.detailed_description}
+              </div>
             </div>
 
           </div>))}

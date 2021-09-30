@@ -39,7 +39,6 @@ export default function Request(){
   } 
 
   function request(){
-    console.log(briefDescription, usage, detailedDescription, links)
     const url=`${hostname}/posts`
     const body={
       accountId: accountId,
@@ -93,8 +92,8 @@ return(
         <div className= {globalStyles.InputFieldName}>
           Detailed Description of Requested Set:*
         </div>
-        <textarea placeholder="Please provide further details on the data you are looking for (e.g. fields, time period, etc) and the intended use of that data" maxLength={500} className={globalStyles.LargeTextBox} onChange={(e) => changeDetailedDescription(e.target.value)} ></textarea>
-        <div className={globalStyles.TextCounter}>{detailedDescriptionCounter}/500 Characters Used</div>
+        <textarea placeholder="Please provide further details on the data you are looking for (e.g. fields, time period, etc) and the intended use of that data" maxLength={1000} className={globalStyles.LargeTextBox} onChange={(e) => changeDetailedDescription(e.target.value)} ></textarea>
+        <div className={globalStyles.TextCounter}>{detailedDescriptionCounter}/1000 Characters Used</div>
       </div>
 
       <div className={globalStyles.InputFieldContainer}>
