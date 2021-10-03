@@ -257,6 +257,15 @@
   align-items: center;
 }
 
+.MessagePageContainer{
+  width: 800px;
+}
+
+.MessagesContainer{
+  width: 100%;
+  display: flex;
+}
+
 .MessageBox{
   display: inline-block;
   position:relative;
@@ -274,10 +283,6 @@
   color: grey;
   float: right;
   margin-right: 5px;
-}
-
-.MessageContainer{
-  width: 800px;
 }
 
 .SmallTextBox{
@@ -473,4 +478,96 @@
 
 .closeButton:hover{
   cursor: pointer;
+}
+
+.inboxButton {
+  background-color: #5B26F1;
+  border: none;
+  color: #FFFFFF;
+  padding: 9px;
+  text-align: center;
+  display: inline-block;
+  font-size: 17px;
+}
+
+.inboxButton:hover{
+  cursor: pointer;
+}
+
+.InboxContainer {
+  width: 660px;
+}
+
+.ThreadContainer {
+  height: 120px;
+  padding: 20px;
+  border-bottom: 1px solid #E6E6E6;
+}
+
+.ThreadSubContainer {
+  padding: 5px;
+  height: 30px;
+}
+
+.LeftSubContainer {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.RightSubContainer {
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+.InboxAccountPicContainer{
+  position: relative;
+  float: left;
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+
+.InboxAccountPic{
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.InboxUserIdentifier {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.InboxDateContainer {
+  display: flex;
+  align-items: center;
+  float: right;
+  height: 100%;
+}
+
+.InboxUnreadContainer {
+  display: flex;
+  align-items: center;
+  float: right;
+  height: 100%;
+}
+
+.InboxThreadBriefDescription {
+  height: 100%;
+  color: #5B26F1;
+  font-size: 24px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.InboxThreadLastMessage {
+  height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

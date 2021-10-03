@@ -15,6 +15,14 @@ export default function NavBar(){
     }
   }
 
+  function messages(){
+    try {
+      Router.push("/messages")
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   function register(){
     try {
       setShowRegistrationModal(true)
@@ -40,6 +48,7 @@ export default function NavBar(){
         <a><button onClick={function(){contact()}} className={globalStyles.button3}>contact us</button></a>
         <a style={{float:"right"}}><button onClick={function(){register()}} className={globalStyles.button2}>log in</button></a>
         <a style={{float:"right"}}><button onClick={function(){register()}} className={globalStyles.button1}>sign up</button></a>
+        <a style={{float:"right"}} ><button onClick={function(){messages()}} className={globalStyles.inboxButton}>Messages</button></a>
       </div>
     </div>
   )

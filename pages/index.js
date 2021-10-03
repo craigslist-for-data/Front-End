@@ -11,8 +11,13 @@ export default function Home(){
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-  axios.get(`${hostname}/posts?index=1&batchSize=25`).then(res => {
-    setPosts(res.data)})
+    axios.get(`${hostname}/posts?index=1&batchSize=25`)
+      .then(res => {
+        setPosts(res.data)
+      })
+      .catch(err => {
+        console.error(err)
+      })
   }, [])
 
   function requestData(){

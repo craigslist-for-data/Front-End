@@ -18,9 +18,9 @@ export default function Messaging() {
     const cookie = new Cookies()
     const accountId = cookie.get('accountId')
     if (accountId==message.account_id){
-      return {'float':'right','color':'white','background-color':'#5B26F1'}
+      return {'margin-left':'auto','color':'white','background-color':'#5B26F1'}
     } else {
-      return {'float':'left','color':'black','background-color':'#e0e0e0'}
+      return {'margin-right':'auto','color':'black','background-color':'#e0e0e0'}
     }
   }
 
@@ -52,9 +52,11 @@ export default function Messaging() {
           </div>
 
           <div className={globalStyles.container}>
-            <div className={globalStyles.MessageContainer}>
+            <div className={globalStyles.MessagePageContainer}>
               {messages.map((message, index) => (
-                <div key={index.toString()} style={messageFormat(message)} className={globalStyles.MessageBox}>{message.message}</div>
+                <div className={globalStyles.MessagesContainer}>
+                  <div key={index.toString()} style={messageFormat(message)} className={globalStyles.MessageBox}>{message.message}</div>
+                </div>
               ))}
               <textarea style={{marginTop:'30px'}} className={globalStyles.LargeTextBox}></textarea>
             </div>
