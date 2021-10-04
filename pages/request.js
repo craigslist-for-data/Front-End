@@ -50,7 +50,7 @@ export default function Request(){
 
     axios.post(url, body, headers)
           .then(res => {
-            Router.push("/home")
+            Router.push("/")
           })
           .catch(err => {
             console.error(err)
