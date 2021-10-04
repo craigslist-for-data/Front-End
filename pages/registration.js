@@ -6,7 +6,6 @@ const axios = require('axios')
 const { hostname } = require('../config')
 
 export default function Registration(){
-  console.log(globalStyles.PageTitle)
 
   const [username, setUsername] = useState('') 
   const [email, setEmail] = useState('')
@@ -21,7 +20,6 @@ export default function Registration(){
   const [title, setTitle] = useState('')
 
   function register(){
-    console.log(username, email, name, password, reenterPassword, phone, linkedIn, gitHub, sSRN, organizationCompany, title)
     const url=`${hostname}/account/register`
     const body={
       username: username,

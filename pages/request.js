@@ -7,7 +7,6 @@ const axios = require('axios')
 const { hostname } = require('../config')
 
 export default function Request(){
-  console.log(globalStyles.PageTitle)
 
   const cookie = new Cookies()
   const accountId = cookie.get('accountId')

@@ -16,7 +16,6 @@ export default function PostDetail(){
   if (Boolean(id)){
     axios.get(`${hostname}/posts/${id}`).then(res => {
       setPost(res.data)
-      console.log(res.data)})
   }
   }, [id])
 
@@ -47,47 +46,55 @@ export default function PostDetail(){
 return(
 
   <div className={globalStyles.body}>
-
     {NavBar()}
 
-  <div key={post.id}>
+    <div key={post.id}>
 
-    <div className={globalStyles.container}>
-      <div className={globalStyles.PostDetailContainer}>
+      <div className={globalStyles.container}>
+        <div className={globalStyles.PostDetailContainer}>
 
-        <div className={globalStyles.PostTitle}>
-          {post.brief_description}
-        </div>
+          <div className={globalStyles.PostTitle}>
+            {post.brief_description}
+          </div>
 
-        <div className={globalStyles.topBufferContainer}>
-          <div className={globalStyles.PostMetaDataContainer}>
-            <div className={globalStyles.RequestListingAccountPicContainer}>
-              <img src='/images/blank-profile-picture.png' className={globalStyles.RequestListingAccountPic} />
+          <div className={globalStyles.topBufferContainer}>
+            <div className={globalStyles.PostMetaDataContainer}>
+              <div className={globalStyles.RequestListingAccountPicContainer}>
+                <img src='/images/blank-profile-picture.png' className={globalStyles.RequestListingAccountPic} />
+              </div>
+
+              <div className={globalStyles.RequestListingPostMetaData}>
+                <div>Posted by <b>{`${post.username}`}</b> on {formatDate(`${post.created_at}`)}</div>
+              </div>
             </div>
 
-            <div className={globalStyles.RequestListingPostMetaData}>
-              <div>Posted by <b>{`${post.username}`}</b> on {formatDate(`${post.created_at}`)}</div>
+            <div className={globalStyles.usageContainer}>
+              <div className={globalStyles.usageTag}>{post.usage} Use</div>
+            </div>
+
+            <div style={{width: 700, marginBottom: 25}} className={globalStyles.PostDetailedDescriptionFull}>
+              {post.detailed_description}
+            </div>
+
+            <div className={globalStyles.MarginContainer10px}>
+              <div className={globalStyles.PostSubtitle}>Links:</div>
+              <div className={globalStyles.LinkContainer}>
+                <b>Website: </b>
+                <a href={post.website_link}>{post.website_link}</a>
+              </div>
+              <div className={globalStyles.LinkContainer}>
+                <b>Github Repo: </b>
+                <a href={post.github_link}>{post.github_link}</a>
+              </div>
             </div>
           </div>
-
-          <div className={globalStyles.usageContainer}>
-            <div className={globalStyles.usageTag}>{post.usage} Use</div>
-          </div>
-
         </div>
 
-        <div>
-          <div style={{width: 700, marginBottom: 25}} className={globalStyles.PostDetailedDescriptionFull}>
-            {post.detailed_description}
-          </div>
+        <div style={{marginBottom: 10, marginTop: 10}} className={globalStyles.mainbutton}>
+          <button onClick={function(){messageData(post.id)}} className={globalStyles.button4}>respond to request</button>
         </div>
-      </div>
 
-      <div style={{marginBottom: 10, marginTop: 10}} className={globalStyles.mainbutton}>
-        <button onClick={function(){messageData(post.id)}} className={globalStyles.button4}>respond to request</button>
       </div>
-
     </div>
-  </div>
   </div>
 )}
