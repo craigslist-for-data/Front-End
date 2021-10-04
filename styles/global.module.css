@@ -153,7 +153,7 @@
 }
 
 .LinkContainer{
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 .container{
@@ -588,4 +588,22 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.CounterPartyContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CounterpartyAccountPicContainer {
+  height: 36px;
+  width: 36px;
+}
+
+.CounterpartyAccountPic{
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
 }
