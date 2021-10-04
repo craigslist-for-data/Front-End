@@ -24,7 +24,6 @@ export function ContactModal(showModal, setShowModal){
   function updateText(text){
     try {
       setText(text)
-      console.log(text.length)
       if (text.length>0){
         setDisabledSubmit(false)
       } else {
@@ -33,12 +32,10 @@ export function ContactModal(showModal, setShowModal){
     } catch (error) {
       console.error(error)
     }
-
   }
 
   function submit(){
     try {
-      console.log('Submit')
       const url=`${hostname}/feedback`
       const body={
         message: text,

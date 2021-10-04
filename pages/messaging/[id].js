@@ -11,12 +11,20 @@ export default function Messaging() {
   const [postInfo, setPostInfo] = useState({})
   const [counterpartyInfo, setCounterpartyInfo] = useState({})
   const [messages, setMessages] = useState([])
+  const [newMessage, setNewMessage] = useState('')
+  const [disabledSend, setDisabledSend] = useState(true)
 
   const router = useRouter()
   const { id } = router.query
 
   const cookie = new Cookies()
   const accountId = cookie.get('accountId')
+  const token = cookie.get('token')
+  const headers = { 
+    headers: { 
+      'token': token,
+    } 
+  } 
 
   function messageFormat(message){
     if (accountId==message.account_id){
@@ -28,26 +36,58 @@ export default function Messaging() {
 
   useEffect(() => {
   if(Boolean(id)){
-    const cookie = new Cookies()
-    const token = cookie.get('token')
     const url = `${hostname}/messages/${id}`
-    const headers = { 
-          headers: { 
-            'token': token,
-          } 
-        } 
-    axios.get(url, headers).then(res => {
-      console.log(res.data)
-      setPostInfo(res.data.post_info)
-      console.log(res.data.participants_info)
-      const counterParty = res.data.participants_info.filter(x => (x.account_id)!=accountId)
-      console.log(counterParty)
-      setCounterpartyInfo(counterParty[0])
-      console.log(counterParty[0])
-      setMessages(res.data.messages)
-    })
+    axios.get(url, headers)
+      .then(res => {
+        setPostInfo(res.data.post_info)
+        const counterParty = res.data.participants_info.filter(x => (x.account_id)!=accountId)
+        setCounterpartyInfo(counterParty[0])
+        setMessages(res.data.messages)
+      })
+      .catch(err => {
+        console.error(err)
+      })
     }
   }, [id])
+
+  function updateNewMessage(text){
+    try {
+      setNewMessage(text)
+      if (text.length>0){
+        setDisabledSend(false)
+      } else {
+        setDisabledSend(true)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  function sendMessage(){
+    try {
+      const url = `${hostname}/messages`
+      const body = {
+        threadId: id,
+        accountId: accountId,
+        message: newMessage,
+      }
+      axios.post(url, body, headers)
+        .then(res => {
+          const sentMessage = [{
+            account_id: accountId,
+            message: newMessage,
+          }]
+          setMessages(messages.concat(sentMessage))
+          setNewMessage('')
+          setDisabledSend(true)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
 
@@ -79,11 +119,11 @@ export default function Messaging() {
                   <div key={index.toString()} style={messageFormat(message)} className={globalStyles.MessageBox}>{message.message}</div>
                 </div>
               ))}
-              <textarea style={{marginTop:'30px'}} className={globalStyles.LargeTextBox}></textarea>
+              <textarea value={newMessage} style={{marginTop:'30px'}} className={globalStyles.LargeTextBox} onChange={(e) => updateNewMessage(e.target.value)}></textarea>
             </div>
 
             <div className={globalStyles.mainbutton}>
-              <a><button className={globalStyles.button4}>submit</button></a>
+              <a><button className={globalStyles.button4} onClick={function(){sendMessage()}} disabled={disabledSend}>submit</button></a>
             </div>
 
           </div>

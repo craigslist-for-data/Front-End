@@ -13,10 +13,15 @@ export default function PostDetail(){
   const { id } = router.query
 
   useEffect(() => {
-  if (Boolean(id)){
-    axios.get(`${hostname}/posts/${id}`).then(res => {
-      setPost(res.data)
-  }
+    if (Boolean(id)){
+      axios.get(`${hostname}/posts/${id}`)
+        .then(res => {
+          setPost(res.data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    }
   }, [id])
 
   function messageData(id){
