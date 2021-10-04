@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Router from 'next/router'
+import Cookies from 'universal-cookie' 
 import globalStyles from '../styles/global.module.css' 
 const { hostname } = require('../config')
 const axios = require('axios')
@@ -36,8 +37,11 @@ export function ContactModal(showModal, setShowModal){
 
   function submit(){
     try {
+      const cookie = new Cookies()
+      const accountId = cookie.get('accountId')
       const url=`${hostname}/feedback`
       const body={
+        accountId: accountId,
         message: text,
       }
       axios.post(url, body)
@@ -62,14 +66,14 @@ export function ContactModal(showModal, setShowModal){
           </div>
           {
             submitted ?
-            <div style={{'display':'flex','flex-direction':'column'}}>
-              <div style={{'margin-top':'175px'}} className={globalStyles.ModalTextContentContainer}>
+            <div style={{'display':'flex','flexDirection':'column'}}>
+              <div style={{'marginTop':'175px'}} className={globalStyles.ModalTextContentContainer}>
                 <div className={globalStyles.PostTitle}>Thank you for contacting us!</div>
               </div>
               <div className={globalStyles.ModalTextContentContainer}>
                 <div className={globalStyles.DescriptionText}>We will do our best to get back to you as quickly as possible.</div>
               </div>
-              <div style={{'margin-top':'auto'}} className={globalStyles.ModalGeneralContentContainer}>
+              <div style={{'marginTop':'auto'}} className={globalStyles.ModalGeneralContentContainer}>
                 <button className={globalStyles.closeButton} onClick={function(){closeModal()}}>Close</button>
               </div>
             </div>
