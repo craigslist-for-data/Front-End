@@ -18,6 +18,8 @@ export default function Request(){
   const [detailedDescriptionCounter, setDetailedDescriptionCounter] = useState(0)
   const [websiteLink, setWebsiteLink] = useState('') 
   const [githubLink, setGithubLink] = useState('') 
+  const [disableSubmit, setDisabledSubmit] = useState(true)
+  const [mandatoryFieldNotice, setMandatoryFieldNotice] = useState("*all mandatory fields must be filled in before posting a data request")
 
   function changeBriefDescription(str){
     setBriefDescriptionCounter(str.length)
@@ -46,76 +48,87 @@ export default function Request(){
       detailedDesc: detailedDescription,
       website: websiteLink,
       github: githubLink,
+  }
+
+  axios.post(url, body, headers)
+        .then(res => {
+          Router.push("/")
+        })
+        .catch(err => {
+          console.error(err)
+        })
+  } 
+
+  useEffect(() => {
+    if (Boolean(briefDescription)&&Boolean(usage)&&Boolean(detailedDescription)){
+      setDisabledSubmit(false)
+      setMandatoryFieldNotice("")
+    } else {
+      setDisabledSubmit(true)
+      setMandatoryFieldNotice("*all mandatory fields must be filled in before posting a data request")
     }
+  }, [briefDescription, usage, detailedDescription])
 
-    axios.post(url, body, headers)
-          .then(res => {
-            Router.push("/")
-          })
-          .catch(err => {
-            console.error(err)
-          })
-    } 
+  return(
+    <div className={globalStyles.body}>
 
-return(
-  <div className={globalStyles.body}>
+      {NavBar()}
 
-    {NavBar()}
-
-    <div className={globalStyles.PageTitle}>
-      Request Data
-    </div>
-
-    <div className={globalStyles.container}>
-
-      <div className={globalStyles.InputFieldContainer}>
-        <div className={globalStyles.InputFieldName}>
-          Brief Description of Requested Set:*
-        </div>
-        <input type="text" placeholder="e.g. Geospatial orbit data from 2019-2020" maxLength={64} className={globalStyles.SmallTextBox} onChange={(e) => changeBriefDescription(e.target.value)} ></input>
-        <div className={globalStyles.TextCounter}>{briefDescriptionCounter}/64 Characters Used</div>
+      <div className={globalStyles.PageTitle}>
+        Request Data
       </div>
 
-      <div style={{height:"100", width:"700"}} className={globalStyles.InputFieldContainer}>
-        <div className={globalStyles.InputFieldNameCentered}>
-          Use for Requested Set:*
-        </div>
-        <div className={globalStyles.InputRadioContainerCentered}>
-          <input type="radio" id="checkboxtext" name="vehicle1" value="Individual" checked={usage=='Personal'}  onChange={(e) => setUsage('Personal')} />Personal
-          <input type="radio" id="checkboxtext" name="vehicle2" value="Academic" checked={usage=='Academic'}  onChange={(e) => setUsage('Academic')}/>Academic
-          <input type="radio" id="checkboxtext" name="vehicle3" value="Business" checked={usage=='Business'}  onChange={(e) => setUsage('Business')}/>Business
-        </div>
-      </div>
+      <div className={globalStyles.container}>
 
-      <div className={globalStyles.InputFieldContainer}>
-        <div className= {globalStyles.InputFieldName}>
-          Detailed Description of Requested Set:*
+        <div className={globalStyles.InputFieldContainer}>
+          <div className={globalStyles.InputFieldName}>
+            Brief Description of Requested Set:*
+          </div>
+          <input type="text" placeholder="e.g. Geospatial orbit data from 2019-2020" maxLength={64} className={globalStyles.SmallTextBox} onChange={(e) => changeBriefDescription(e.target.value)} ></input>
+          <div className={globalStyles.TextCounter}>{briefDescriptionCounter}/64 Characters Used</div>
         </div>
-        <textarea placeholder="Please provide further details on the data you are looking for (e.g. fields, time period, etc) and the intended use of that data" maxLength={1000} className={globalStyles.LargeTextBox} onChange={(e) => changeDetailedDescription(e.target.value)} ></textarea>
-        <div className={globalStyles.TextCounter}>{detailedDescriptionCounter}/1000 Characters Used</div>
-      </div>
 
-      <div className={globalStyles.InputFieldContainer}>
-        <div className={globalStyles.InputFieldName}>
-          Link to Project Website:
+        <div style={{height:"100", width:"700"}} className={globalStyles.InputFieldContainer}>
+          <div className={globalStyles.InputFieldNameCentered}>
+            Use for Requested Set:*
+          </div>
+          <div className={globalStyles.InputRadioContainerCentered}>
+            <input type="radio" id="checkboxtext" name="vehicle1" value="Individual" checked={usage=='Personal'}  onChange={(e) => setUsage('Personal')} />Personal
+            <input type="radio" id="checkboxtext" name="vehicle2" value="Academic" checked={usage=='Academic'}  onChange={(e) => setUsage('Academic')}/>Academic
+            <input type="radio" id="checkboxtext" name="vehicle3" value="Business" checked={usage=='Business'}  onChange={(e) => setUsage('Business')}/>Business
+          </div>
         </div>
-        <input placeholder={"https://www.datagenie.org"} className={globalStyles.SmallTextBox} onChange={(e) => setWebsiteLink(e.target.value)} ></input>
-      </div>
 
-      <div className={globalStyles.InputFieldContainer}>
-        <div className={globalStyles.InputFieldName}>
-          Path to Github Repo:
+        <div className={globalStyles.InputFieldContainer}>
+          <div className= {globalStyles.InputFieldName}>
+            Detailed Description of Requested Set:*
+          </div>
+          <textarea placeholder="Please provide further details on the data you are looking for (e.g. fields, time period, etc) and the intended use of that data" maxLength={1000} className={globalStyles.LargeTextBox} onChange={(e) => changeDetailedDescription(e.target.value)} ></textarea>
+          <div className={globalStyles.TextCounter}>{detailedDescriptionCounter}/1000 Characters Used</div>
         </div>
-        <div className={globalStyles.UrlPathContainer}>
-          <div className={globalStyles.UrlPathHostContainer}>https://github.com</div>
-          <input placeholder={"/craigslist-for-data"} className={globalStyles.SmallTextBox} onChange={(e) => setGithubLink(e.target.value)} ></input>
-        </div>
-      </div>
 
-      <div className={globalStyles.mainbutton}>
-        <a><button className={globalStyles.button4} onClick={function(){request()}}>post</button></a>
+        <div className={globalStyles.InputFieldContainer}>
+          <div className={globalStyles.InputFieldName}>
+            Link to Project Website:
+          </div>
+          <input placeholder={"https://www.datagenie.org"} className={globalStyles.SmallTextBox} onChange={(e) => setWebsiteLink(e.target.value)} ></input>
+        </div>
+
+        <div className={globalStyles.InputFieldContainer}>
+          <div className={globalStyles.InputFieldName}>
+            Path to Github Repo:
+          </div>
+          <div className={globalStyles.UrlPathContainer}>
+            <div className={globalStyles.UrlPathHostContainer}>https://github.com</div>
+            <input placeholder={"/craigslist-for-data"} className={globalStyles.SmallTextBox} onChange={(e) => setGithubLink(e.target.value)} ></input>
+          </div>
+        </div>
+
+        <div className={globalStyles.mainbutton}>
+          <a><button className={globalStyles.button4} onClick={function(){request()}} disabled={disableSubmit}>post</button></a>
+        </div>
+        <div style={{'marginTop':'10px'}} className={globalStyles.TextCounter}>{mandatoryFieldNotice}</div>
       </div>
     </div>
-  </div>
   )
 }
