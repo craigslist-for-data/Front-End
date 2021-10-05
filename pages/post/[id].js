@@ -96,7 +96,7 @@ return(
         </div>
 
         <div style={{marginBottom: 10, marginTop: 10}} className={globalStyles.mainbutton}>
-          <button onClick={function(){messageData(post.id)}} className={globalStyles.button4}>respond to request</button>
+          <button onClick={function(){messageData(post.id)}} className={globalStyles.button4}>chat</button>
         </div>
 
       </div>

@@ -28,9 +28,9 @@ export default function Messaging() {
 
   function messageFormat(message){
     if (accountId==message.account_id){
-      return {'margin-left':'auto','color':'white','background-color':'#5B26F1'}
+      return {'marginLeft':'auto','color':'white','backgroundColor':'#5B26F1'}
     } else {
-      return {'margin-right':'auto','color':'black','background-color':'#e0e0e0'}
+      return {'marginRight':'auto','color':'black','backgroundColor':'#e0e0e0'}
     }
   }
 
@@ -115,7 +115,7 @@ export default function Messaging() {
               </div>
 
               {messages.map((message, index) => (
-                <div className={globalStyles.MessagesContainer}>
+                <div key={index.toString()} className={globalStyles.MessagesContainer}>
                   <div key={index.toString()} style={messageFormat(message)} className={globalStyles.MessageBox}>{message.message}</div>
                 </div>
               ))}
