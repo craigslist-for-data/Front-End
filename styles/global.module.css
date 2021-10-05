@@ -523,6 +523,10 @@
   border-bottom: 1px solid #E6E6E6;
 }
 
+.ThreadContainer:hover {
+  cursor: pointer;
+}
+
 .ThreadSubContainer {
   padding: 5px;
   height: 30px;
@@ -576,12 +580,27 @@
 
 .InboxThreadBriefDescription {
   height: 100%;
+  width: 90%;
+  float: left;
   color: #5B26F1;
   font-size: 24px;
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.InboxThreadUnreadCount {
+  width: 10%;
+  float: right;
+  height: 25px;
+  width: 25px;
+  background-color: #5B26F1;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 .InboxThreadLastMessage {

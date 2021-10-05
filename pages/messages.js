@@ -7,7 +7,7 @@ import formatDate from '../utilities'
 const axios = require('axios')
 const { hostname } = require('../config')
 
-export default function HelloWorld(){
+export default function Messages(){
   const [threads, setThreads] = useState([])
 
   useEffect(() => {
@@ -36,13 +36,31 @@ export default function HelloWorld(){
     }
   }
 
+  function showBoldText(unread){
+    try {
+      const boldFormatting = (unread>0) ? {'fontWeight':'bold'} : {'fontWeight':'normal'}
+      return boldFormatting
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  function showUnreadCount(unread){
+    try {
+      const unreadCountDisplay = (unread>0) ? {'display':'flex'} : {'display':'none'}
+      return unreadCountDisplay
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className={globalStyles.body}>
       {NavBar()}
       <div className={globalStyles.container}>
         <div className={globalStyles.InboxContainer}>
           {threads.map((thread, index) => (
-            <div key={index.toString()} onClick={function(){viewThread(thread.thread_id)}} className={globalStyles.ThreadContainer}>
+            <div key={index.toString()} onClick={function(){viewThread(thread.thread_id)}} style={showBoldText(thread.unread_messages)} className={globalStyles.ThreadContainer}>
               <div className={globalStyles.ThreadSubContainer}>
                 <div className={globalStyles.LeftSubContainer}>
                   <div className={globalStyles.InboxAccountPicContainer}>
@@ -61,6 +79,7 @@ export default function HelloWorld(){
               </div>
               <div className={globalStyles.ThreadSubContainer}>
                 <div className={globalStyles.InboxThreadBriefDescription}>{`${thread.post.brief_description}`}</div>
+                <div style={showUnreadCount(thread.unread_messages)} className={globalStyles.InboxThreadUnreadCount}>{thread.unread_messages}</div>
               </div>
               <div className={globalStyles.ThreadSubContainer}>
                 <div className={globalStyles.InboxThreadLastMessage}>{`${thread.last_message.last_message}`}</div>
