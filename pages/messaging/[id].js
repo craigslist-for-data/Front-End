@@ -74,6 +74,7 @@ export default function Messaging() {
       const body = {
         threadId: id,
         accountId: accountId,
+        postId: postInfo.post_id,
         message: newMessage,
       }
       axios.post(url, body, headers)
