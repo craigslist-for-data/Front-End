@@ -9,6 +9,9 @@ const { hostname } = require('../../config')
 
 export default function PostDetail(){
   const [post, setPost] = useState([])
+  const [chatDisplay, setChatDisplay] = useState({'display':'block'})
+  const cookie = new Cookies()
+  const accountId = cookie.get('accountId')
   const router = useRouter()
   const { id } = router.query
 
@@ -17,6 +20,9 @@ export default function PostDetail(){
       axios.get(`${hostname}/posts/${id}`)
         .then(res => {
           setPost(res.data)
+          if (res.data.account_id==accountId){
+            setChatDisplay({'display':'none'})
+          }
         })
         .catch(err => {
           console.error(err)
@@ -50,8 +56,6 @@ export default function PostDetail(){
 
   function displayName(post){
     try {
-      const cookie = new Cookies()
-      const accountId = cookie.get('accountId')
       if (post.account_id==accountId){
         return "You"
       } else {
@@ -109,7 +113,7 @@ export default function PostDetail(){
             </div>
           </div>
 
-          <div style={{marginBottom: 10, marginTop: 10}} className={globalStyles.mainbutton}>
+          <div style={chatDisplay} className={globalStyles.mainbutton}>
             <button onClick={function(){messageData(post.id)}} className={globalStyles.button4}>chat</button>
           </div>
 
