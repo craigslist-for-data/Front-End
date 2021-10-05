@@ -627,3 +627,28 @@
   height: 100%;
   width: 100%;
 }
+
+.InboxEmptyContainer{
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.InboxEmptyText{
+  font-size: 24px;
+  margin-bottom: 15px;
+  font: helvetica;
+  color: #777777;
+}
+
+.InboxEmptyPicContainer{
+  height: 60px;
+  width: 60px;
+}
+
+.InboxEmptyPic{
+  height: 100%;
+  width: 100%;
+}

@@ -59,33 +59,44 @@ export default function Messages(){
       {NavBar()}
       <div className={globalStyles.container}>
         <div className={globalStyles.InboxContainer}>
-          {threads.map((thread, index) => (
-            <div key={index.toString()} onClick={function(){viewThread(thread.thread_id)}} style={showBoldText(thread.unread_messages)} className={globalStyles.ThreadContainer}>
-              <div className={globalStyles.ThreadSubContainer}>
-                <div className={globalStyles.LeftSubContainer}>
-                  <div className={globalStyles.InboxAccountPicContainer}>
-                    <img src='/images/blank-profile-picture.png' className={globalStyles.InboxAccountPic} />
-                  </div>
-
-                  <div className={globalStyles.InboxUserIdentifier}>
-                    <div>{`${thread.account.username}`}</div>
-                  </div>
-                </div>
-                <div className={globalStyles.RightSubContainer}>
-                  <div className={globalStyles.InboxDateContainer}>
-                    <div>{formatDate(`${thread.last_message.created_at}`)}</div>
-                  </div>
-                </div>
-              </div>
-              <div className={globalStyles.ThreadSubContainer}>
-                <div className={globalStyles.InboxThreadBriefDescription}>{`${thread.post.brief_description}`}</div>
-                <div style={showUnreadCount(thread.unread_messages)} className={globalStyles.InboxThreadUnreadCount}>{thread.unread_messages}</div>
-              </div>
-              <div className={globalStyles.ThreadSubContainer}>
-                <div className={globalStyles.InboxThreadLastMessage}>{`${thread.last_message.last_message}`}</div>
+          {(threads.length==0) ?
+            <div className={globalStyles.InboxEmptyContainer}>
+              <div className={globalStyles.InboxEmptyText}>Message Inbox Empty</div>
+              <div className={globalStyles.InboxEmptyPicContainer}>
+                <img src='/images/empty-inbox_icon.png' className={globalStyles.InboxEmptyPic} />
               </div>
             </div>
-          ))}
+            :
+            <div>
+              {threads.map((thread, index) => (
+                <div key={index.toString()} onClick={function(){viewThread(thread.thread_id)}} style={showBoldText(thread.unread_messages)} className={globalStyles.ThreadContainer}>
+                  <div className={globalStyles.ThreadSubContainer}>
+                    <div className={globalStyles.LeftSubContainer}>
+                      <div className={globalStyles.InboxAccountPicContainer}>
+                        <img src='/images/blank-profile-picture.png' className={globalStyles.InboxAccountPic} />
+                      </div>
+
+                      <div className={globalStyles.InboxUserIdentifier}>
+                        <div>{`${thread.account.username}`}</div>
+                      </div>
+                    </div>
+                    <div className={globalStyles.RightSubContainer}>
+                      <div className={globalStyles.InboxDateContainer}>
+                        <div>{formatDate(`${thread.last_message.created_at}`)}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={globalStyles.ThreadSubContainer}>
+                    <div className={globalStyles.InboxThreadBriefDescription}>{`${thread.post.brief_description}`}</div>
+                    <div style={showUnreadCount(thread.unread_messages)} className={globalStyles.InboxThreadUnreadCount}>{thread.unread_messages}</div>
+                  </div>
+                  <div className={globalStyles.ThreadSubContainer}>
+                    <div className={globalStyles.InboxThreadLastMessage}>{`${thread.last_message.last_message}`}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          }
         </div>
       </div>
     </div>

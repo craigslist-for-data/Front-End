@@ -43,6 +43,11 @@ export default function Messaging() {
         const counterParty = res.data.participants_info.filter(x => (x.account_id)!=accountId)
         setCounterpartyInfo(counterParty[0])
         setMessages(res.data.messages)
+        const readUrl = `${hostname}/messages/${id}/read`
+        const readBody = {accountId: accountId}
+        axios.post(readUrl, readBody, headers)
+          .then(res => {console.log(res)})
+          .catch(err => {console.error(err)})
       })
       .catch(err => {
         console.error(err)
