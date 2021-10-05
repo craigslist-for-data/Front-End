@@ -48,58 +48,73 @@ export default function PostDetail(){
     }
   }
 
-return(
+  function displayName(post){
+    try {
+      const cookie = new Cookies()
+      const accountId = cookie.get('accountId')
+      if (post.account_id==accountId){
+        return "You"
+      } else {
+        return post.username
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
-  <div className={globalStyles.body}>
-    {NavBar()}
+  return(
 
-    <div key={post.id}>
+    <div className={globalStyles.body}>
+      {NavBar()}
 
-      <div className={globalStyles.container}>
-        <div className={globalStyles.PostDetailContainer}>
+      <div key={post.id}>
 
-          <div className={globalStyles.PostTitle}>
-            {post.brief_description}
+        <div className={globalStyles.container}>
+          <div className={globalStyles.PostDetailContainer}>
+
+            <div className={globalStyles.PostTitle}>
+              {post.brief_description}
+            </div>
+
+            <div className={globalStyles.topBufferContainer}>
+              <div className={globalStyles.PostMetaDataContainer}>
+                <div className={globalStyles.RequestListingAccountPicContainer}>
+                  <img src='/images/blank-profile-picture.png' className={globalStyles.RequestListingAccountPic} />
+                </div>
+
+                <div className={globalStyles.RequestListingPostMetaData}>
+                  <div>Posted by <b>{displayName(post)}</b> on {formatDate(`${post.created_at}`)}</div>
+                </div>
+              </div>
+
+              <div className={globalStyles.usageContainer}>
+                <div className={globalStyles.usageTag}>{post.usage} Use</div>
+              </div>
+
+              <div style={{width: 700, marginBottom: 25}} className={globalStyles.PostDetailedDescriptionFull}>
+                {post.detailed_description}
+              </div>
+
+              <div className={globalStyles.MarginContainer10px}>
+                <div className={globalStyles.PostSubtitle}>Links:</div>
+                <div className={globalStyles.LinkContainer}>
+                  <b>Website: </b>
+                  <a href={post.website_link}>{post.website_link}</a>
+                </div>
+                <div className={globalStyles.LinkContainer}>
+                  <b>Github Repo: </b>
+                  <a href={post.github_link}>{post.github_link}</a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className={globalStyles.topBufferContainer}>
-            <div className={globalStyles.PostMetaDataContainer}>
-              <div className={globalStyles.RequestListingAccountPicContainer}>
-                <img src='/images/blank-profile-picture.png' className={globalStyles.RequestListingAccountPic} />
-              </div>
-
-              <div className={globalStyles.RequestListingPostMetaData}>
-                <div>Posted by <b>{`${post.username}`}</b> on {formatDate(`${post.created_at}`)}</div>
-              </div>
-            </div>
-
-            <div className={globalStyles.usageContainer}>
-              <div className={globalStyles.usageTag}>{post.usage} Use</div>
-            </div>
-
-            <div style={{width: 700, marginBottom: 25}} className={globalStyles.PostDetailedDescriptionFull}>
-              {post.detailed_description}
-            </div>
-
-            <div className={globalStyles.MarginContainer10px}>
-              <div className={globalStyles.PostSubtitle}>Links:</div>
-              <div className={globalStyles.LinkContainer}>
-                <b>Website: </b>
-                <a href={post.website_link}>{post.website_link}</a>
-              </div>
-              <div className={globalStyles.LinkContainer}>
-                <b>Github Repo: </b>
-                <a href={post.github_link}>{post.github_link}</a>
-              </div>
-            </div>
+          <div style={{marginBottom: 10, marginTop: 10}} className={globalStyles.mainbutton}>
+            <button onClick={function(){messageData(post.id)}} className={globalStyles.button4}>chat</button>
           </div>
-        </div>
 
-        <div style={{marginBottom: 10, marginTop: 10}} className={globalStyles.mainbutton}>
-          <button onClick={function(){messageData(post.id)}} className={globalStyles.button4}>chat</button>
         </div>
-
       </div>
     </div>
-  </div>
-)}
+  )
+}

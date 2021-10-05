@@ -36,6 +36,20 @@ export default function Home(){
     }
   }
 
+  function displayName(post){
+    try {
+      const cookie = new Cookies()
+      const accountId = cookie.get('accountId')
+      if (post.account_id==accountId){
+        return "You"
+      } else {
+        return post.username
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
 
     <div className={globalStyles.body}>
@@ -61,7 +75,7 @@ export default function Home(){
               </div>
 
               <div className={globalStyles.RequestListingPostMetaData}>
-                <div>Posted by <b>{`${post.username}`}</b> on {formatDate(`${post.created_at}`)}</div>
+                <div>Posted by <b>{displayName(post)}</b> on {formatDate(`${post.created_at}`)}</div>
               </div>
             </div>
 
